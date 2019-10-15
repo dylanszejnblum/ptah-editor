@@ -223,6 +223,8 @@ export default {
   mounted () {
     let css = this.currentLanding.settings.css
 
+    this.setDevice('is-desktop') // reset device
+
     this.$builder.rootEl = this.$refs.artboard
     this.initSettings()
 
@@ -257,7 +259,8 @@ export default {
       'toggleSidebar',
       'setControlPanel',
       'toggleSidebar',
-      'toggleAddSectionMenu'
+      'toggleAddSectionMenu',
+      'setDevice'
     ]),
     ...mapActions('Landing', [
       'saveState'

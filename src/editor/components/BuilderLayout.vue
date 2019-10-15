@@ -25,7 +25,11 @@
           ></BuilderSidebar>
       </aside>
 
-      <main class="b-builder-layout-content__main">
+      <main class="b-builder-layout-content__main"
+        :class="{
+          'b-builder-layout-content__main_up' : isContentVisible,
+        }"
+        >
         <base-scroll-container
           backgroundBar="#fff">
           <div class="b-builder-layout-content__main-layout" :class="device">
@@ -152,6 +156,9 @@ $topBarHeight: 6rem
     z-index: 10
     transition: width 0.3s ease-in-out
     background-color: $ligth-grey
+
+    &_up
+      z-index: 100 // more than 1 than z-index of onboading tips
 
     &-layout
       transition: width 0.2s
