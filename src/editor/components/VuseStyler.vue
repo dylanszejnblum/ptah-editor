@@ -865,7 +865,7 @@ export default {
   justify-content: space-between
   align-items: flex-start
   height: 2.6rem
-  z-index: 20
+  z-index: 100
   margin: 0 0 0 -0.2rem
 
   &.is-visible

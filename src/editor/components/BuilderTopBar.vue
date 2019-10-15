@@ -13,14 +13,11 @@ export default {
     }
   },
 
-  data: () => ({
-    device: null
-  }),
-
   computed: {
     ...mapState(['currentLanding']),
     ...mapState('Sidebar', [
-      'isExpanded'
+      'isExpanded',
+      'device'
     ]),
 
     ...mapState('Landing', [
@@ -141,25 +138,28 @@ export default {
       </div>
       <div class="b-top-bar-menu__right">
         <span tooltip="Show hints" tooltip-position="bottom"
-              :class="{ 'active': onBoarding }"
-              @click="updateOnBoarding(!onBoarding)">
-          <icon-base name="questionCircle" />
+          v-if="device !== 'is-mobile'"
+          :class="{ 'active': onBoarding }"
+          @click="updateOnBoarding(!onBoarding)"
+          >
+            <icon-base name="questionCircle" />
         </span>
         <span :tooltip="$t('menu.siteSettings')" tooltip-position="bottom"
-              @click="toggleMenuItem('siteSettings')">
-          <icon-base name="cog"></icon-base>
+          @click="toggleMenuItem('siteSettings')"
+          >
+            <icon-base name="cog"/>
         </span>
 
         <span :tooltip="$t('nav.preview')" tooltip-position="bottom"
-              @click="$emit('preview', $event)">
-          <icon-base name="preview">
-          </icon-base>
+          @click="$emit('preview', $event)"
+          >
+            <icon-base name="preview"/>
         </span>
 
         <span :tooltip="$t('nav.export')" tooltip-position="bottom"
-              @click="$emit('export', $event)">
-          <icon-base name="export">
-          </icon-base>
+          @click="$emit('export', $event)"
+          >
+            <icon-base name="export"/>
         </span>
       </div>
     </div>

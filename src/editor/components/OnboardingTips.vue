@@ -75,7 +75,8 @@ export default {
       'settingObjectOptions',
       'settingObjectElement',
       'settingObjectSection',
-      'sandbox'
+      'sandbox',
+      'controlPanel'
     ]),
 
     sections () {
@@ -92,6 +93,10 @@ export default {
       } else {
         return ''
       }
+    },
+
+    canInit () {
+      return this.onBoarding && this.device !== 'is-mobile' && !this.controlPanel.expanded
     }
   },
 
@@ -101,7 +106,7 @@ export default {
         return this.destroyTips()
       }
 
-      if (this.onBoarding) {
+      if (this.canInit) {
         this.initTips()
       }
     },
@@ -115,29 +120,25 @@ export default {
     },
 
     device: function (value) {
-      if (value === 'is-mobile') {
-        this.destroyTips()
-      } else if (this.onBoarding) {
-        setTimeout(() => {
-          this.initTips()
-        }, 500)
-      }
+      this.destroyThenInit()
+    },
+
+    controlPanel: function (value) {
+      this.destroyThenInit()
     },
 
     settingObjectOptions: {
       handler: function (val, oldVal) {
-        if (this.onBoarding) {
-          this.destroyTips()
-          this.initTips()
-        }
+        this.destroyThenInit()
       },
       deep: true
     },
 
     widthSlot: {
       handler: function (val, oldVal) {
-        if (this.onBoarding) {
-          this.destroyTips()
+        this.destroyTips()
+
+        if (this.canInit) {
           this.initTips()
         }
       },
@@ -223,6 +224,14 @@ export default {
     destroyTips () {
       document.querySelectorAll('.b-onboarding-tip').forEach(item => item.remove())
       this.tips.forEach(tip => tip.destroy())
+    },
+
+    destroyThenInit () {
+      this.destroyTips()
+
+      if (this.canInit) {
+        this.initTips()
+      }
     }
   }
 }
