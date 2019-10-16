@@ -208,13 +208,21 @@ export default {
     // get reference element node
     getNode (className, container) {
       // exclude header
-      if (_.some(this.builder.sections, ['isHeader', true])) {
-        const header = document.querySelector('.b-section-header')
+      if (_.some(this.builder.sections, ['noTips', true])) {
+        const sectionNoTips = document.querySelectorAll('.b-section-no-tips') || []
 
         return Array
           .from(container.querySelectorAll(className))
           .filter((node) => {
-            return !header.contains(node)
+            let isHas = false
+
+            for (let section of sectionNoTips) {
+              isHas = section.contains(node)
+
+              if (isHas === false) {
+                return isHas
+              }
+            }
           })[0] || null
       } else {
         return container.querySelector(className)

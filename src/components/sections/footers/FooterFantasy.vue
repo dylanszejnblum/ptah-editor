@@ -215,6 +215,7 @@ export default {
   cover: 'https://s3.protocol.one/images/FootFantCover3.jpg',
 
   $schema: {
+    noTips: true,
     mainStyle: types.StyleObject,
     container: types.StyleObject,
     components: COMPONENTS
@@ -231,7 +232,7 @@ export default {
 <template>
   <footer
     class="b-section-footer"
-    :class="$sectionData.mainStyle.classes"
+    :class="[$sectionData.mainStyle.classes, {'b-section-no-tips' : $sectionData.noTips }]"
     :style="$sectionData.mainStyle.styles"
     v-styler:section="$sectionData.mainStyle"
   >

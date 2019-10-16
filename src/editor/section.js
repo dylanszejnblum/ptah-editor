@@ -21,6 +21,7 @@ export default class Section {
     this.stylers = []
     this.isMain = false // flag for group
     this.isHeader = this.schema.isHeader || false // --- flag for header element
+    this.noTips = this.schema.noTips || false // --- flag for no onboarding tips
   }
 
   set (name, value) {

@@ -1,7 +1,7 @@
 <template>
   <header
     v-styler:section="$sectionData.mainStyle"
-    :class="[$sectionData.mainStyle.classes, {'_sticky' : $sectionData.mainStyle.sticky }]"
+    :class="[$sectionData.mainStyle.classes, {'_sticky' : $sectionData.mainStyle.sticky }, {'b-section-no-tips' : $sectionData.noTips }]"
     :style="[$sectionData.mainStyle.styles, { '--bg-color': $sectionData.mainStyle.styles['background-color'] }]"
     class="b-section-header">
 
@@ -306,6 +306,7 @@ export default {
   mixins: [defaults],
 
   $schema: {
+    noTips: true,
     isHeader: true,
     mainStyle: StyleObject,
     container: StyleObject,
