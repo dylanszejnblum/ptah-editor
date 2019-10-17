@@ -62,11 +62,11 @@ export default {
         },
         {
           name: '.b-toggle-element',
-          hint: this.$t('onboard.text')
+          hint: this.$t('onboard.toggle')
         },
         {
           name: '.b-form-element',
-          hint: this.$t('onboard.text')
+          hint: this.$t('onboard.form')
         },
         {
           name: '.b-inline',
