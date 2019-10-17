@@ -59,6 +59,18 @@ export default {
         {
           name: '.b-video',
           hint: this.$t('onboard.video')
+        },
+        {
+          name: '.b-toggle-element',
+          hint: this.$t('onboard.text')
+        },
+        {
+          name: '.b-form-element',
+          hint: this.$t('onboard.text')
+        },
+        {
+          name: '.b-inline',
+          hint: this.$t('onboard.text')
         }
       ],
       tips: []
@@ -226,7 +238,7 @@ export default {
             }
 
             // hides tips on all slides except the first one in slider section
-            isShow = this.checkNodeInSlide(node, isShow)
+            isShow = this.checkNodeIn(node, isShow)
 
             return isShow
           })[0] || null
@@ -234,19 +246,23 @@ export default {
         return Array
           .from(container.querySelectorAll(className))
           .filter((node) => {
-            return this.checkNodeInSlide(node, true)
+            return this.checkNodeIn(node, true)
           })[0] || null
       }
     },
 
-    checkNodeInSlide (node, isShow) {
-      let isS = isShow
+    checkNodeIn (node, isShow) {
+      let s = isShow
 
       if (node.closest('.swiper-slide') && !node.closest('.swiper-slide-active')) {
-        isS = false
+        s = false
       }
 
-      return isS
+      if (node.closest('[tabs-content]') && node.closest('[tabs-content]').style.display !== 'none') {
+        s = false
+      }
+
+      return s
     },
 
     destroyTips () {

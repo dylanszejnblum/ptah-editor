@@ -71,7 +71,7 @@ const SCHEMA_CUSTOM = {
   },
   components: _.merge({}, C_CUSTOM),
   container: {
-    width: 9
+    width: 7
   },
   edited: true
 }

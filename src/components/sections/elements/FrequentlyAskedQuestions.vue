@@ -142,7 +142,7 @@ const C_CUSTOM = [
 ]
 
 const C_CUSTOM_CONTAINER = {
-  width: 12,
+  width: 7,
   styles: {
     'flex-direction': 'column',
     'align-items': 'center'
@@ -150,7 +150,7 @@ const C_CUSTOM_CONTAINER = {
 }
 
 const C_CUSTOM_CONTAINER_1 = {
-  width: 12,
+  width: 7,
   styles: {
     'flex-direction': 'column',
     'align-items': 'flex-start'
