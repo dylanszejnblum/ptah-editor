@@ -214,19 +214,39 @@ export default {
         return Array
           .from(container.querySelectorAll(className))
           .filter((node) => {
-            let isHas = false
+            let isShow = true
 
+            // hides tips on header/footer section
             for (let section of sectionNoTips) {
-              if (!isHas && section.contains(node)) {
-                isHas = true
+              if (isShow) {
+                if (section.contains(node)) {
+                  isShow = false
+                }
               }
             }
 
-            return isHas === false
+            // hides tips on all slides except the first one in slider section
+            isShow = this.checkNodeInSlide(node, isShow)
+
+            return isShow
           })[0] || null
       } else {
-        return container.querySelector(className)
+        return Array
+          .from(container.querySelectorAll(className))
+          .filter((node) => {
+            return this.checkNodeInSlide(node, true)
+          })[0] || null
       }
+    },
+
+    checkNodeInSlide (node, isShow) {
+      let isS = isShow
+
+      if (node.closest('.swiper-slide') && !node.closest('.swiper-slide-active')) {
+        isS = false
+      }
+
+      return isS
     },
 
     destroyTips () {
