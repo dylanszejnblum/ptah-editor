@@ -73,7 +73,8 @@ export default {
           hint: this.$t('onboard.text')
         }
       ],
-      tips: []
+      tips: [],
+      placement: false // direction tips
     }
   },
 
@@ -125,6 +126,7 @@ export default {
 
     onBoarding: function (value) {
       if (value) {
+        this.placement = false
         this.initTips()
       } else {
         this.destroyTips()
@@ -148,11 +150,7 @@ export default {
 
     widthSlot: {
       handler: function (val, oldVal) {
-        this.destroyTips()
-
-        if (this.canInit) {
-          this.initTips()
-        }
+        this.destroyThenInit()
       },
       deep: true
     }
@@ -179,9 +177,12 @@ export default {
 
     createTip (referenceElement, popper) {
       const container = document.getElementById('artboard')
+      let direction = ''
+
+      direction = this.placement ? 'right' : 'left'
 
       const tip = new Popper(referenceElement, popper, {
-        placement: 'right',
+        placement: direction,
         modifiers: {
           flip: {
             enabled: true,
@@ -195,6 +196,7 @@ export default {
         }
       })
 
+      this.placement = !this.placement
       this.tips.push(tip)
     },
 
@@ -271,6 +273,7 @@ export default {
     },
 
     destroyThenInit () {
+      this.placement = false
       this.destroyTips()
 
       if (this.canInit) {
