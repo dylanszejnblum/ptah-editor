@@ -217,12 +217,12 @@ export default {
             let isHas = false
 
             for (let section of sectionNoTips) {
-              isHas = section.contains(node)
-
-              if (isHas === false) {
-                return isHas
+              if (!isHas && section.contains(node)) {
+                isHas = true
               }
             }
+
+            return isHas === false
           })[0] || null
       } else {
         return container.querySelector(className)
