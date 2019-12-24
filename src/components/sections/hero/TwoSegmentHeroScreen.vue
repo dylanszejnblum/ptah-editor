@@ -210,7 +210,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import '../../../assets/sass/section-media.sass'
+@import '../../../assets/sass/sections/section-media'
 .b-grid__col-8
   .is-mobile &,
   .is-tablet &

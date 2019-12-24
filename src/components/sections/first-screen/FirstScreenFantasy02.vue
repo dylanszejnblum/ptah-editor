@@ -398,7 +398,7 @@ export default {
 </template>
 
 <style lang="sass" scoped>
-@import '../../../assets/sass/section-media.sass'
+@import '../../../assets/sass/sections/section-media'
 
 .b-first-screen-fantasy-02
   @media only screen and (width: 1024px) and (height: 1366px)

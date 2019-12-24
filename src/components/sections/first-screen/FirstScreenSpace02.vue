@@ -267,7 +267,7 @@ export default {
 </template>
 
 <style lang="sass" scoped>
-@import '../../../assets/sass/section-media.sass'
+@import '../../../assets/sass/sections/section-media'
 
 .b-first-screen-space-02
   .b-text-fs
