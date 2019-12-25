@@ -367,6 +367,46 @@
         width: 30rem
         height: 30rem
 
+
+.gallery-switch-fantasy
+  margin-bottom: -20px
+
+  .b-preview
+    border: 0
+
+    &_active
+      transform: none
+      filter: none
+      opacity: 1
+
+  .b-preview__image
+    opacity: 1
+
+  .b-gallery-one-list
+    align-items: flex-end !important
+
+  .b-gallery-one-list__tiles
+    text-align: center
+    width: 70%
+    opacity: 1
+    height: auto
+    &_mobile
+    .is-tablet &,
+    .is-mobile &
+      opacity: 0
+      width: 0
+      height: 0
+    @media only screen and (max-width: 768px)
+      &
+        display: none
+
+    .loader__content
+      transition: none
+    .b-gallery-one-stage__img
+      width: auto
+      height: auto
+
+// GALLERY POPUP
 .b-gallery-popup
   $this: &
 

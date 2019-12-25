@@ -631,22 +631,4 @@ export default {
 </template>
 
 <style lang="sass" scoped>
-@import '../../../assets/sass/sections/section-media'
-@import '../../../assets/sass/section-menu.sass'
-@import '../../../assets/sass/_variables.sass'
-@import '../../../assets/sass/sections/flex'
-
-.b-products-colums
-  $this: &
-  &__row
-    justify-content: center
-    align-items: flex-start
-
-  &__icon-with-text
-    color: inherit
-    font-family: inherit
-
-  .b-grid__col-3
-    padding: .8rem
-
 </style>
