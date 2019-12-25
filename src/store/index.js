@@ -99,7 +99,8 @@ const actions = {
             pdf: 'https://gn338.cdn.stg.gamenet.ru/0/7XSEU/o_1ohKcv.pdf'
           },
           mailchimpUrl: false,
-          mailchimpList: false
+          mailchimpList: false,
+          name: data.name
         })
         commit('isSaved', false)
         commit('updateCurrentLanding', landing)

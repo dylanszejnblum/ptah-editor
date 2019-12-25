@@ -152,7 +152,7 @@ function download (assets) {
         </html>`)
 
       zip.generateAsync({ type: 'blob' }).then((blob) => {
-        saveAs(blob, 'project.zip')
+        saveAs(blob, `${this.settings.name}.zip`)
       })
     })
 }
