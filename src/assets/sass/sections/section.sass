@@ -30,6 +30,29 @@ header,
 footer
   z-index: 1
 
+/* video background styles */
+.video-background
+  position: relative !important
+  background: none !important
+  overflow: hidden !important
+  video
+    position: absolute
+    top: 0
+    left: 0
+    min-width: 100%
+    min-height: 100%
+    + .b-footer
+      background: none !important
+
+/* overlay background */
+
+.b-overlay
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
 // HERO HUNT
 .b-hunt
   .b-grid,
@@ -278,3 +301,4 @@ footer
       padding-top: 0
     @media only screen and (max-width: 768px)
       padding-top: 0
+

@@ -7,74 +7,15 @@ import sectionMedia from '../../mixins/sectionMedia'
 
 const COMPONENTS = [
   {
-    name: 'Logo',
-    element: types.Logo,
-    type: 'image',
-    class: 'b-footer-game-logo',
-    label: 'logo'
-  },
-  {
-    name: 'TextElement',
-    element: types.Text,
-    type: 'text',
-    class: 'b-footer-copyright',
-    label: 'description'
-  },
-  {
     name: 'SocialNetworks',
     element: types.SocialNetworks,
     type: 'networks',
     class: 'b-social-networks-fs',
     label: 'Social Networks'
-  },
-  {
-    name: 'Button',
-    element: types.Button,
-    type: 'button',
-    class: 'b-footer-link',
-    label: 'button'
-  },
-  {
-    name: 'Button',
-    element: types.Button,
-    type: 'button',
-    class: 'b-footer-link',
-    label: 'button'
-  },
-  {
-    name: 'Button',
-    element: types.Button,
-    type: 'button',
-    class: 'b-footer-link',
-    label: 'button'
   }
 ]
 
 const C_CUSTOM = [
-  {
-    element: {
-      styles: {
-        'background-image': 'url("https://s3.protocol.one/src/o_1Y54Cu.svg")',
-        'background-color': 'rgba(0, 0, 0, 0)',
-        'background-repeat': 'no-repeat',
-        'background-size': 'contain',
-        'width': '118px',
-        'height': '46px'
-      }
-    }
-  },
-  {
-    element: {
-      text: '2018—2019. Some text for footer',
-      styles: {
-        'font-family': 'Lato',
-        'font-size': '1.4rem',
-        'color': '#fff',
-        'padding-right': '16px',
-        'padding-left': '16px'
-      }
-    }
-  },
   {
     element: {
       socialNetworks: {
@@ -107,77 +48,14 @@ const C_CUSTOM = [
         color: '#F4BC64'
       },
       sizeIcons: {
-        width: 30
-      }
-    }
-  },
-  {
-    element: {
-      text: 'Information',
-      styles: {
-        'background-color': 'rgba(0,0,0,0)',
-        'background-image': 'none',
-        'color': '#F4BC64',
-        'font-family': 'Lato',
-        'text-align': 'center',
-        'width': '130px',
-        'height': '32px',
-        'font-size': '1.8rem'
-      },
-      pseudo: {
-        hover: {
-          'color': '#fff !important',
-          'background-color': 'rgba(0,0,0,0)'
-        }
-      }
-    }
-  },
-  {
-    element: {
-      text: 'Legal',
-      styles: {
-        'background-color': 'rgba(0,0,0,0)',
-        'background-image': 'none',
-        'color': '#F4BC64',
-        'font-family': 'Lato',
-        'text-align': 'center',
-        'width': '80px',
-        'height': '32px',
-        'font-size': '1.8rem'
-      },
-      pseudo: {
-        hover: {
-          'color': '#fff !important',
-          'background-color': 'rgba(0,0,0,0)'
-        }
-      }
-    }
-  },
-  {
-    element: {
-      text: 'Blog',
-      styles: {
-        'background-color': 'rgba(0,0,0,0)',
-        'background-image': 'none',
-        'color': '#F4BC64',
-        'font-family': 'Lato',
-        'text-align': 'center',
-        'width': '80px',
-        'height': '32px',
-        'font-size': '1.8rem'
-      },
-      pseudo: {
-        hover: {
-          'color': '#fff !important',
-          'background-color': 'rgba(0,0,0,0)'
-        }
+        width: 40
       }
     }
   }
 ]
 
-const GROUP_NAME = 'Footer'
-const NAME = 'FooterSpace'
+const GROUP_NAME = 'SocialNetworks'
+const NAME = 'SocialNetworks'
 const BG_SECTION = 'url(https://s3.protocol.one/src/o_cm1BL.jpg)'
 
 const SCHEMA_CUSTOM = {
@@ -193,15 +71,11 @@ const SCHEMA_CUSTOM = {
     }
   },
   container: {
-    width: 11,
     styles: {
-      'flex-direction': 'row'
+      'padding-top': '30px',
+      'padding-bottom': '30px'
     },
-    media: {
-      'is-mobile': {
-        'flex-direction': 'column'
-      }
-    }
+    width: 12
   },
   components: _.merge({}, C_CUSTOM),
   edited: true
@@ -212,11 +86,9 @@ export default {
 
   group: GROUP_NAME,
 
-  description: 'Lined up lower block with set of elements',
-
   mixins: [defaults, sectionMedia],
 
-  cover: '/img/covers/footer-space.jpg',
+  cover: '/img/covers/socials-space.jpg',
 
   $schema: {
     mainStyle: types.StyleObject,
@@ -233,8 +105,8 @@ export default {
 </script>
 
 <template>
-  <footer
-    class="b-section-footer"
+  <section
+    class="b-socials-networks-space"
     :class="$sectionData.mainStyle.classes"
     :style="[$sectionData.mainStyle.styles, $sectionData.objVarsMedia]"
     v-styler:section="$sectionData.mainStyle"
@@ -242,14 +114,14 @@ export default {
     <slot name="menu"/>
     <slot name="video"/>
     <slot name="overlay"/>
-    <div class="b-footer">
+    <div class="b-socials">
       <div class="b-grid">
-        <div class="b-grid__row b-footer__row">
+        <div class="b-grid__row b-socials__row">
           <div class="b-grid__col-m-12" :class="`b-grid__col-${$sectionData.container.width}`">
             <sandbox
                 container-path="$sectionData.container"
                 components-path="$sectionData.components"
-                class="b-footer__col b-footer__col_1">
+                class="b-socials__col b-socials__col_1">
 
               <draggable v-model="$sectionData.components" class="b-draggable-slot b-draggable-slot_horizont" :style="$sectionData.container.styles" @start="$_drag('components')" @change="$_dragStop">
                 <div v-for="(component, index) in $sectionData.components" v-if="$sectionData.components.length !== 0" :key="index">
@@ -261,7 +133,7 @@ export default {
                     :style="$sectionData.components[index].element.styles"
                     :class="[$sectionData.components[index].element.classes, $sectionData.components[index].class]"
                     :path="`components[${index}].element`"
-                    class="b-footer-component"
+                    class="b-socials-component"
                     >
                     <div v-html="$sectionData.components[index].element.text"></div>
                   </component>
@@ -269,11 +141,59 @@ export default {
               </draggable>
             </sandbox>
           </div>
-        </div><!--/.b-grid__row.b-footer__row-->
+        </div><!--/.b-grid__row.b-socials__row-->
       </div><!--/.b-grid-->
-    </div><!--/.b-footer-->
-  </footer>
+    </div><!--/.b-socials-->
+  </section>
 </template>
 
 <style lang="sass" scoped>
+@import '../../../assets/sass/section-media.sass'
+
+.b-socials-networks-space
+  position: relative
+  width: 100%
+  margin: 0
+  display: flex
+  text-align: center
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  transition: background 200ms
+  .is-mobile &,
+  .is-tablet &
+    position: relative
+    padding: 2rem 0 1rem
+  @media only screen and (max-width: 768px)
+    &
+      position: relative
+      padding: 2rem 0 1rem
+
+.b-socials
+  width: 100%
+  &__row
+    align-items: center
+  &__col
+    min-height: auto
+  &-logo,
+  &-game-logo
+  &-copyright
+  .is-mobile &,
+  .is-tablet &
+    position: relative
+    height: auto
+  @media only screen and (max-width: 768px)
+    &
+      position: relative
+      height: auto
+
+  &-component
+    margin: 0.8rem
+    .is-mobile &,
+    .is-tablet &
+      margin: 0.8rem auto
+    @media only screen and (max-width: 768px)
+      &
+        margin: 0.8rem auto
+
 </style>
