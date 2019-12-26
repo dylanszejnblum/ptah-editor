@@ -154,7 +154,7 @@ const defaultComponents = [
         'is-mobile': {
           width: '190px',
           height: '60px',
-          'margin-top': '4px',
+          'margin-top': '0',
           'margin-right': '0',
           'margin-bottom': '0',
           'margin-left': '0'
@@ -282,7 +282,8 @@ const defaultSchema = {
     },
     media: {
       'is-mobile': {
-        'flex-direction': 'column'
+        'flex-direction': 'column',
+        'margin-top': '-16px'
       }
     },
     width: 3,
