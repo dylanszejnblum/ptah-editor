@@ -564,7 +564,6 @@ export default {
       this.settingObjectSection.schema[p[0]].splice(p[1], 1)
 
       const styler = document.querySelector(`.b-styler[path="${name}-${this.settingObjectSection.id}"]`)
-      console.log(styler)
       styler.remove()
     }
   }
