@@ -86,6 +86,18 @@
       </v-style>
 
     </div>
+
+    <!-- confirm delete element windows -->
+    <base-confirm
+      class="b-modal-delete-element"
+      title="Delete element"
+      @confirm="removeElement(selectedElement.name)"
+      @close="closeDeleteElement"
+      v-if="showConfirmElementDelete"
+      button="Delete"
+    >
+      You are going to delete <b>{{ selectedElement.name }}</b>, this cannot be undone. Confirm deleting?
+    </base-confirm>
   </div>
 </builder-layout>
 </template>
@@ -132,7 +144,9 @@ export default {
         array: [],
         prop: '.artboard',
         content: ''
-      }
+      },
+      showConfirmElementDelete: false,
+      selectedElement: null
     }
   },
 
@@ -536,11 +550,18 @@ export default {
       let name = null
 
       if (event.key === 'Delete' && this.settingObjectOptions && this.settingObjectOptions.name) {
-        name = this.settingObjectOptions.name
-
-        if (name.indexOf('.element') !== -1) {
-          this.removeElement(name)
+        if (this.settingObjectOptions.name.indexOf('.element') !== -1) {
+          this.selectedElement = this.settingObjectOptions
+          this.deleteElement( this.selectedElement.name)
+        } else {
+          this.selectedElement = null
         }
+      }
+    },
+
+    deleteElement (name) {
+      if (this.selectedElement !== null) {
+        this.showConfirmElementDelete = true
       }
     },
 
@@ -557,14 +578,20 @@ export default {
      * @param index
      */
     removeElement (name) {
-      this.$nextTick()
-        
       let p = this.path(name)
       this.settingObjectSection.data[p[0]].splice(p[1], 1)
       this.settingObjectSection.schema[p[0]].splice(p[1], 1)
+      this.selectedElement = null
+      this.clearSettingObjectLight()
 
       const styler = document.querySelector(`.b-styler[path="${name}-${this.settingObjectSection.id}"]`)
-      styler.remove()
+
+      if (styler) styler.remove()
+    },
+
+    closeDeleteElement () {
+      this.showConfirmElementDelete = false
+      this.selectedElement = null
     }
   }
 }
@@ -725,5 +752,7 @@ export default {
     margin: 0 0 4px
     padding: 1rem 0.5rem
     background: lighten(#18d88b, 40%)
-
+    
+.b-modal-delete-element
+  margin-left: $size-step * 9
 </style>
