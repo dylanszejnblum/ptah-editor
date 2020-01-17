@@ -5,6 +5,7 @@
     v-if="$builder.isEditing"
     :class="{ 'is-visible': isVisible && !editText }"
     @click.stop=""
+    :path="`${name}-${section.id}`"
   >
 
     <div class="b-styler__controls">
@@ -435,6 +436,11 @@ export default {
     this.el.removeEventListener('click', this.elClick)
     this.el.removeEventListener('dblclick', this.dblclick)
     document.removeEventListener('mousedown', this.hideStyler, true)
+
+    /*
+      let test = document.querySelectorAll('.b-styler')
+      test.forEach(e => e.remove())
+    */
   },
 
   methods: {

@@ -4,7 +4,8 @@
     :builder="builder"
     @export="submit"
     @preview="preview"
-    @save="save">
+    @save="save"
+>
 
   <div>
     <div
@@ -140,7 +141,8 @@ export default {
     ...mapState('Sidebar', [
       'isExpanded',
       'device',
-      'settingObjectSection'
+      'settingObjectSection',
+      'settingObjectOptions'
     ]),
 
     builder () {
@@ -207,6 +209,9 @@ export default {
     if (localStorage.getItem('guest') === null) {
       this.getUser()
     }
+
+    // listener keyUp press
+    document.addEventListener('keyup', this.keyUp)
   },
 
   mounted () {
@@ -246,7 +251,8 @@ export default {
       'toggleSidebar',
       'setControlPanel',
       'toggleSidebar',
-      'toggleAddSectionMenu'
+      'toggleAddSectionMenu',
+      'clearSettingObjectLight'
     ]),
     ...mapActions('Landing', [
       'saveState'
@@ -524,7 +530,40 @@ export default {
 
     isActiveSection (id) {
       return this.settingObjectSection.id === id
-    }  
+    },
+
+    keyUp (event) {
+      let name = null
+
+      if (event.key === 'Delete' && this.settingObjectOptions && this.settingObjectOptions.name) {
+        name = this.settingObjectOptions.name
+
+        if (name.indexOf('.element') !== -1) {
+          this.removeElement(name)
+        }
+      }
+    },
+
+    /**
+     * Get path
+    */
+    path (name) {
+      let path = _.split(name, '.')[1]
+      return _.toPath(path)
+    },
+
+    /**
+     * Remove element
+     * @param index
+     */
+    removeElement (name) {
+      let p = this.path(name)
+      this.settingObjectSection.data[p[0]].splice(p[1], 1)
+      this.settingObjectSection.schema[p[0]].splice(p[1], 1)
+
+      const styler = document.querySelector(`.b-styler[path="${name}-${this.settingObjectSection.id}"]`)
+      styler.remove()
+    }
   }
 }
 </script>
